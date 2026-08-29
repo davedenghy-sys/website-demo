@@ -29,7 +29,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Loaded non-blocking: media="print" defers application, onload swaps it to
+       "all" once fetched, so the page paints immediately with the fallback
+       stack instead of waiting on this request. -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </noscript>
 
   <style>
 /* ==========================================================================
@@ -69,10 +76,15 @@
 
 /* ---------- Reset & base ---------- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
+  width: 100%;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -405,11 +417,11 @@ section {
 }
 
 @media (min-width: 640px) {
-  .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
-  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 .card {
@@ -463,7 +475,7 @@ section {
 }
 
 @media (min-width: 960px) {
-  .about-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 }
 
 .about-copy h2 {
@@ -478,8 +490,13 @@ section {
 .stat-row {
   margin-top: var(--space-6);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+@media (max-width: 420px) {
+  .stat-row { gap: var(--space-2); }
+  .stat-row .num { font-size: 1.4rem; }
 }
 
 .stat-row .num {
@@ -655,6 +672,8 @@ section {
   gap: 0.75rem;
   margin-top: var(--space-3);
 }
+
+#copyBtn.copy-failed { color: #f87171; }
 
 .email-text {
   font-family: var(--font-heading);
@@ -1362,18 +1381,40 @@ document.addEventListener('DOMContentLoaded', () => {
   if (copyBtn && copyLabel) {
     copyBtn.addEventListener('click', async () => {
       const email = document.getElementById('emailText').textContent.trim();
+
+      // Optimistic update: assume success and reflect it immediately,
+      // rather than waiting on the async clipboard call to paint.
+      copyLabel.textContent = 'Copied';
+      copyBtn.classList.remove('copy-failed');
+
+      let succeeded = true;
       try {
         await navigator.clipboard.writeText(email);
       } catch (e) {
-        const temp = document.createElement('textarea');
-        temp.value = email;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand('copy');
-        document.body.removeChild(temp);
+        try {
+          const temp = document.createElement('textarea');
+          temp.value = email;
+          temp.style.position = 'fixed';
+          temp.style.opacity = '0';
+          document.body.appendChild(temp);
+          temp.select();
+          succeeded = document.execCommand('copy');
+          document.body.removeChild(temp);
+        } catch (fallbackErr) {
+          succeeded = false;
+        }
       }
-      copyLabel.textContent = 'Copied';
-      setTimeout(() => { copyLabel.textContent = 'Copy'; }, 2000);
+
+      // Roll back the optimistic state only if it actually failed.
+      if (!succeeded) {
+        copyLabel.textContent = 'Copy failed';
+        copyBtn.classList.add('copy-failed');
+      }
+
+      setTimeout(() => {
+        copyLabel.textContent = 'Copy';
+        copyBtn.classList.remove('copy-failed');
+      }, 2000);
     });
   }
 
@@ -1407,8 +1448,16 @@ document.addEventListener('DOMContentLoaded', () => {
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px -10% 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
+
+    // Safety net: on some mobile browsers a section can end up sized 0
+    // before layout settles, so the observer never crosses the threshold
+    // and the section is stuck invisible. Force everything visible after
+    // a short delay so content can never be permanently hidden by this.
+    setTimeout(() => {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }, 1200);
   } else {
     revealEls.forEach(el => el.classList.add('visible'));
   }
@@ -1456,17 +1505,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    let finalUTM = utmData;
     if (hasUTM) {
+      // Fresh params this visit: write once, no need to read anything back.
       try {
         sessionStorage.setItem('utm_data', JSON.stringify(utmData));
       } catch (e) { /* storage unavailable, ignore */ }
+    } else {
+      // No params on this URL: this is the only case where a read is needed.
+      try {
+        finalUTM = JSON.parse(sessionStorage.getItem('utm_data') || 'null');
+      } catch (e) { finalUTM = null; }
     }
-
-    let storedUTM = null;
-    try {
-      storedUTM = JSON.parse(sessionStorage.getItem('utm_data') || 'null');
-    } catch (e) { /* ignore */ }
-    const finalUTM = hasUTM ? utmData : storedUTM;
 
     if (finalUTM) {
       const mailtoLink = document.querySelector('a[href^="mailto:"]');
