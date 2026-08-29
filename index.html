@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -923,7 +924,7 @@ section {
       </nav>
 
       <button id="menuBtn" class="menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -955,19 +956,24 @@ section {
         <a href="#contact" class="btn btn-primary">Get Started</a>
         <a href="#services" class="link-arrow">
           Explore our services
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5-5 5M5 12h12" />
           </svg>
         </a>
       </div>
 
       <div class="tag-list">
-        <span class="tag-chip" tabindex="0" data-tooltip="Built to run on cloud infrastructure from day one, not bolted on later">Cloud Native</span>
-        <span class="tag-chip" tabindex="0" data-tooltip="Models that learn patterns from your data to make predictions or automate decisions">Machine Learning</span>
-        <span class="tag-chip" tabindex="0" data-tooltip="Handling data too large or fast-moving for a standard database">Big Data</span>
-        <span class="tag-chip" tabindex="0" data-tooltip="Independent services that can be built, deployed, and scaled separately">Microservices</span>
-        <span class="tag-chip" tabindex="0" data-tooltip="Dashboards and reports that update as new data arrives, not just overnight">Real-time Analytics</span>
+        <span class="tag-chip" tabindex="0" data-tooltip="Built to run on cloud infrastructure from day one, not bolted on later" aria-describedby="tag-desc-1">Cloud Native</span>
+        <span class="tag-chip" tabindex="0" data-tooltip="Models that learn patterns from your data to make predictions or automate decisions" aria-describedby="tag-desc-2">Machine Learning</span>
+        <span class="tag-chip" tabindex="0" data-tooltip="Handling data too large or fast-moving for a standard database" aria-describedby="tag-desc-3">Big Data</span>
+        <span class="tag-chip" tabindex="0" data-tooltip="Independent services that can be built, deployed, and scaled separately" aria-describedby="tag-desc-4">Microservices</span>
+        <span class="tag-chip" tabindex="0" data-tooltip="Dashboards and reports that update as new data arrives, not just overnight" aria-describedby="tag-desc-5">Real-time Analytics</span>
       </div>
+      <span id="tag-desc-1" class="sr-only">Built to run on cloud infrastructure from day one, not bolted on later</span>
+      <span id="tag-desc-2" class="sr-only">Models that learn patterns from your data to make predictions or automate decisions</span>
+      <span id="tag-desc-3" class="sr-only">Handling data too large or fast-moving for a standard database</span>
+      <span id="tag-desc-4" class="sr-only">Independent services that can be built, deployed, and scaled separately</span>
+      <span id="tag-desc-5" class="sr-only">Dashboards and reports that update as new data arrives, not just overnight</span>
     </div>
   </section>
 
@@ -983,7 +989,7 @@ section {
       <div class="card-grid cols-4">
         <div class="card">
           <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
           </div>
           <h3>Custom web applications</h3>
           <p>Websites and web apps built around how your business actually works, not a generic template.</p>
@@ -991,7 +997,7 @@ section {
 
         <div class="card">
           <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 14l4-4 3 3 5-6" /></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 14l4-4 3 3 5-6" /></svg>
           </div>
           <h3>Data science & analytics</h3>
           <p>We turn your raw data into models, pipelines, and dashboards you can actually use to make decisions.</p>
@@ -999,7 +1005,7 @@ section {
 
         <div class="card">
           <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16M9 7v10" /></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16M9 7v10" /></svg>
           </div>
           <h3>Data architecture</h3>
           <p>Data infrastructure that's built to keep working as your business grows, not just for launch day.</p>
@@ -1007,7 +1013,7 @@ section {
 
         <div class="card">
           <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z" /></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z" /></svg>
           </div>
           <h3>Secure cloud operations</h3>
           <p>Cloud setups that are properly secured and monitored, not just switched on and left alone.</p>
@@ -1050,7 +1056,7 @@ section {
 
           <div class="build-item">
             <span class="check">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
             </span>
             <div>
               <strong>Secure by design</strong>
@@ -1060,7 +1066,7 @@ section {
 
           <div class="build-item">
             <span class="check">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
             </span>
             <div>
               <strong>Built to scale</strong>
@@ -1070,7 +1076,7 @@ section {
 
           <div class="build-item">
             <span class="check">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
             </span>
             <div>
               <strong>Tested before delivery</strong>
@@ -1094,7 +1100,7 @@ section {
       <div class="card-grid cols-3">
         <div class="card center">
           <div class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
           </div>
           <h3>Startups</h3>
           <p>Quick, focused builds that help early-stage companies launch and start learning from real users.</p>
@@ -1102,7 +1108,7 @@ section {
 
         <div class="card center">
           <div class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2M5 21H3m8-14h.01M11 11h.01M11 15h.01M7 11h.01M7 15h.01M15 11h.01M15 15h.01" /></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2M5 21H3m8-14h.01M11 11h.01M11 15h.01M7 11h.01M7 15h.01M15 11h.01M15 15h.01" /></svg>
           </div>
           <h3>Established SMEs</h3>
           <p>Updating older systems and adding new features without disrupting the operations that already work.</p>
@@ -1110,7 +1116,7 @@ section {
 
         <div class="card center">
           <div class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16M9 9h1m-1 4h1m4-4h1m-1 4h1M9 21v-4a1 1 0 011-1h4a1 1 0 011 1v4" /></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16M9 9h1m-1 4h1m4-4h1m-1 4h1M9 21v-4a1 1 0 011-1h4a1 1 0 011 1v4" /></svg>
           </div>
           <h3>Large Enterprises</h3>
           <p>Solid architecture and careful delivery for complex systems, where mistakes are expensive.</p>
@@ -1166,9 +1172,9 @@ section {
         <div class="faq-item">
           <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-1">
             <span>What size of company do you work with?</span>
-            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
           </button>
-          <div id="faq-answer-1" class="faq-panel">
+          <div id="faq-answer-1" class="faq-panel" aria-hidden="true">
             <div class="faq-panel-inner">
               <p>We work exclusively with businesses, from early-stage startups to large enterprises. We don't take on individual or consumer projects.</p>
             </div>
@@ -1178,9 +1184,9 @@ section {
         <div class="faq-item">
           <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-2">
             <span>How long does a typical project take?</span>
-            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
           </button>
-          <div id="faq-answer-2" class="faq-panel">
+          <div id="faq-answer-2" class="faq-panel" aria-hidden="true">
             <div class="faq-panel-inner">
               <p>It depends on scope, but most projects run from a few weeks for a focused build to a few months for larger platforms. We agree a concrete timeline during the Architecture stage, before any code is written.</p>
             </div>
@@ -1190,9 +1196,9 @@ section {
         <div class="faq-item">
           <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-3">
             <span>Do you offer ongoing support after launch?</span>
-            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
           </button>
-          <div id="faq-answer-3" class="faq-panel">
+          <div id="faq-answer-3" class="faq-panel" aria-hidden="true">
             <div class="faq-panel-inner">
               <p>Yes. Deploy & Support is a formal part of our process — ongoing maintenance, monitoring, and support arrangements tailored to your needs after go-live.</p>
             </div>
@@ -1202,9 +1208,9 @@ section {
         <div class="faq-item">
           <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-4">
             <span>What technologies do you specialise in?</span>
-            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
           </button>
-          <div id="faq-answer-4" class="faq-panel">
+          <div id="faq-answer-4" class="faq-panel" aria-hidden="true">
             <div class="faq-panel-inner">
               <p>Custom web application development, machine learning and analytics pipelines, scalable data architecture, and secure cloud deployments. We choose the right stack for each project rather than pushing one default.</p>
             </div>
@@ -1214,9 +1220,9 @@ section {
         <div class="faq-item">
           <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-5">
             <span>How do we get started?</span>
-            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
           </button>
-          <div id="faq-answer-5" class="faq-panel">
+          <div id="faq-answer-5" class="faq-panel" aria-hidden="true">
             <div class="faq-panel-inner">
               <p>Reach out through the contact section below with a short outline of your project. We'll set up an initial conversation to understand your goals before proposing anything.</p>
             </div>
@@ -1237,21 +1243,21 @@ section {
 
       <div class="contact-card">
         <div class="contact-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
         </div>
 
         <p style="color: var(--text-muted); font-size: 0.9rem;">Business Email</p>
         <div class="email-row">
           <code id="emailText" class="email-text">Dengteng@hotmail.com</code>
           <button id="copyBtn" class="btn btn-primary" data-tooltip="Copy email to clipboard">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
             <span id="copyLabel">Copy</span>
           </button>
         </div>
 
         <a href="mailto:Dengteng@hotmail.com?subject=Inquiry%20from%20your%20website" class="direct-link">
           Or email us directly
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7-7 7M5 12h16" /></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7-7 7M5 12h16" /></svg>
         </a>
         <p class="contact-note">If that link doesn't open your mail app, copy the address above instead.</p>
       </div>
@@ -1291,7 +1297,7 @@ section {
     <p>Questions about this policy or your information can be sent to <a href="mailto:Dengteng@hotmail.com">Dengteng@hotmail.com</a>.</p>
 
     <a href="index.html" class="back-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5 5-5M6 12h12" /></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5 5-5M6 12h12" /></svg>
       Back to home
     </a>
   
@@ -1327,10 +1333,10 @@ section {
   <!-- ===================== FLOATING ACTIONS ===================== -->
   <div class="floating-actions">
     <a href="#contact" aria-label="Jump to contact section" class="fab fab-contact" data-tooltip="Jump to contact">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-6l-4 4v-4z" /></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-6l-4 4v-4z" /></svg>
     </a>
     <button id="backToTop" aria-label="Back to top" class="fab fab-top" data-tooltip="Back to top">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
     </button>
   </div>
 
@@ -1506,12 +1512,15 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.faq-trigger').forEach(t => {
         if (t !== trigger) {
           t.setAttribute('aria-expanded', 'false');
-          document.getElementById(t.getAttribute('aria-controls')).classList.remove('open');
+          const otherPanel = document.getElementById(t.getAttribute('aria-controls'));
+          otherPanel.classList.remove('open');
+          otherPanel.setAttribute('aria-hidden', 'true');
         }
       });
 
       trigger.setAttribute('aria-expanded', String(!isOpen));
       panel.classList.toggle('open', !isOpen);
+      panel.setAttribute('aria-hidden', String(isOpen));
     });
   });
 
