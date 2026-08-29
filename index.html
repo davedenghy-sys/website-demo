@@ -50,8 +50,8 @@
   --surface-hover: #1c2434;
   --border: #2a3245;
   --text: #e9edf3;
-  --text-muted: #97a2b3;
-  --text-faint: #6b7688;
+  --text-muted: #a7b2c2;
+  --text-faint: #9fabbb;
   --accent: #3b7cf6;
   --accent-hover: #2f66d0;
   --on-accent: #ffffff;
@@ -184,6 +184,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   z-index: 50;
   background: rgba(16, 21, 31, 0.92);
   border-bottom: 1px solid var(--border);
+  transition: transform 0.25s ease;
+}
+
+@media (max-width: 859px) {
+  .site-header.nav-hidden {
+    transform: translateY(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header { transition: none; }
 }
 
 .nav-row {
@@ -1346,6 +1357,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function setMenuOpen(open) {
     mobileMenu.classList.toggle('open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
+    if (open) {
+      const header = document.querySelector('.site-header');
+      if (header) header.classList.remove('nav-hidden');
+    }
   }
 
   if (menuBtn && mobileMenu) {
@@ -1418,9 +1433,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- Scroll progress + back-to-top ----------
+  // ---------- Scroll progress + back-to-top + hide-on-scroll header ----------
   const scrollProgress = document.getElementById('scrollProgress');
   const backToTop = document.getElementById('backToTop');
+  const siteHeader = document.querySelector('.site-header');
+  const mobileNavQuery = window.matchMedia('(max-width: 859px)');
+  let lastScrollY = window.scrollY;
 
   function onScroll() {
     const scrollTop = window.scrollY;
@@ -1428,9 +1446,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     if (scrollProgress) scrollProgress.style.width = progress + '%';
     if (backToTop) backToTop.classList.toggle('visible', scrollTop > 400);
+
+    if (siteHeader && mobileNavQuery.matches) {
+      const scrolledDown = scrollTop > lastScrollY;
+      const pastHeader = scrollTop > 76; // header height, avoid hiding right at the top
+      const menuIsOpen = mobileMenu && mobileMenu.classList.contains('open');
+      if (!menuIsOpen) {
+        siteHeader.classList.toggle('nav-hidden', scrolledDown && pastHeader);
+      }
+    } else if (siteHeader) {
+      siteHeader.classList.remove('nav-hidden');
+    }
+    lastScrollY = scrollTop;
   }
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Always show the bar again if the viewport crosses back to desktop width.
+  mobileNavQuery.addEventListener('change', () => {
+    if (!mobileNavQuery.matches && siteHeader) siteHeader.classList.remove('nav-hidden');
+  });
 
   if (backToTop) {
     backToTop.addEventListener('click', () => {
